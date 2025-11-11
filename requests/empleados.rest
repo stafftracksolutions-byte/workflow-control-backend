@@ -1,0 +1,33 @@
+@base = http://localhost:3000
+@correoEmpleado = empleado@demo.com
+@passwordEmpleado = Admin123*
+@idEmpleadoPropio = 690df0c11296502cbaa76ac7
+@idEmpleadoOtro = 690df0b01296502cbaa76ac3
+
+### 1️⃣ Login empleado y guardar token
+POST {{base}}/api/v1/login
+Content-Type: application/json
+
+{
+  "correo": "{{correoEmpleado}}",
+  "password": "{{passwordEmpleado}}"
+}
+
+### Copiar el token de la respuesta y pegarlo aquí
+@tokenEmpleado = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGJlYTQyOWI5N2I1ZmE4ZDVkZjkzNiIsInJvbCI6ImVtcGxlYWRvIiwibm9tYnJlIjoiRW1wbGVhZG8gRGVtbyIsImNvcnJlbyI6ImVtcGxlYWRvQGRlbW8uY29tIiwiaWF0IjoxNzYyNTIwMjQ1LCJleHAiOjE3NjI1MjM4NDV9.yPN0PiCz5RQcPnFo5XCdo5Q_yNNxuVt0KCAvypLvSic
+
+### 2️⃣ Obtener datos del propio usuario (autorizado)
+GET {{base}}/api/v1/empleados/me
+Authorization: Bearer {{tokenEmpleado}}
+
+### 3️⃣ Obtener empleado por ID (autorizado si es el propio)
+GET {{base}}/api/v1/empleados/{{idEmpleadoPropio}}
+Authorization: Bearer {{tokenEmpleado}}
+
+### 4️⃣ Intentar listar todos los empleados (no autorizado)
+GET {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenEmpleado}}
+
+### 3️⃣ Obtener empleado por ID (no autorizado si no es el propio)
+GET {{base}}/api/v1/empleados/{{idEmpleadoOtro}}
+Authorization: Bearer {{tokenEmpleado}}

@@ -1,0 +1,166 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Workflow Control API",
+    "version": "1.0.0",
+    "description": "API de control de empleados desarrollada por STAFFTRACK SOLUTIONS"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/api/v1",
+      "description": "Servidor local"
+    }
+  ],
+  "paths": {
+    "/login": {
+      "post": {
+        "summary": "Iniciar sesión de usuario",
+        "tags": ["Autenticación"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "correo": { "type": "string" },
+                  "password": { "type": "string" }
+                },
+                "required": ["correo", "password"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Inicio de sesión exitoso" },
+          "401": { "description": "Credenciales inválidas" }
+        }
+      }
+    },
+    "/empleados": {
+      "get": {
+        "summary": "Listar empleados",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Lista de empleados" }
+        }
+      },
+      "post": {
+        "summary": "Crear un empleado",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Empleado" }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Empleado creado correctamente" },
+          "400": { "description": "Datos inválidos" }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar todos los empleados",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "responses": {
+          "200": { "description": "Empleados eliminados correctamente" }
+        }
+      }
+    },
+    "/empleados/{id}": {
+      "get": {
+        "summary": "Obtener un empleado por ID",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Empleado encontrado" },
+          "404": { "description": "Empleado no encontrado" }
+        }
+      },
+      "put": {
+        "summary": "Actualizar un empleado por ID",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Empleado" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Empleado actualizado" },
+          "400": { "description": "Error en datos" }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar un empleado por ID",
+        "tags": ["Empleados"],
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Empleado eliminado" },
+          "404": { "description": "Empleado no encontrado" }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
+    "schemas": {
+      "Empleado": {
+        "type": "object",
+        "properties": {
+          "nombres": { "type": "string" },
+          "apellidos": { "type": "string" },
+          "tipoDocumento": { "type": "string" },
+          "numeroDocumento": { "type": "integer" },
+          "correo": { "type": "string" },
+          "telefono": { "type": "string" },
+          "cargo": { "type": "string" },
+          "area": { "type": "string" },
+          "tipoContrato": { "type": "string" },
+          "salario": { "type": "number" },
+          "estado": { "type": "string" },
+          "fechaNacimiento": { "type": "string", "format": "date" },
+          "fechaIngreso": { "type": "string", "format": "date" }
+        },
+        "required": ["nombres", "apellidos", "correo"]
+      }
+    }
+  }
+}

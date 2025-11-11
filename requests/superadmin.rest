@@ -1,0 +1,115 @@
+@base = http://localhost:3000
+@correoSuper = superadmin@demo.com
+@passwordSuper = Admin123*
+
+### 1️⃣ Login superadmin
+POST {{base}}/api/v1/login
+Content-Type: application/json
+
+{
+  "correo": "{{correoSuper}}",
+  "password": "{{passwordSuper}}"
+}
+
+### Copiar el token de la respuesta y pegarlo aquí
+@tokenSuper = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGJlYTQyOWI5N2I1ZmE4ZDVkZjkzOCIsInJvbCI6InN1cGVyYWRtaW4iLCJub21icmUiOiJTdXBlciBBZG1pbiIsImNvcnJlbyI6InN1cGVyYWRtaW5AZGVtby5jb20iLCJpYXQiOjE3NjI1MjA0OTMsImV4cCI6MTc2MjUyNDA5M30.TozPrQkeljfDBq2KNahW3cfXPvg0ip46Btue7Ic7sck
+
+### 2️⃣ Listar todos los empleados (inicial)
+GET {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}
+
+### 3️⃣ Borrar todos los empleados
+DELETE {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}
+
+### 4️⃣ Crear empleado completo
+POST {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}
+Content-Type: application/json
+
+{
+  "nombres": "EmpleadoCompleto",
+  "apellidos": "Test",
+  "tipoDocumento": "C.C.",
+  "numeroDocumento": 1111111111,
+  "fechaNacimiento": "1990-01-01",
+  "correo": "empleadocompleto@demo.com",
+  "telefono": "3001112223",
+  "cargo": "Developer",
+  "area": "TI",
+  "fechaIngreso": "2025-01-01",
+  "tipoContrato": "Fijo",
+  "salario": 2500000,
+  "estado": "Activo"
+}
+
+### 5️⃣ Crear empleado con datos obligatorios
+POST {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}
+Content-Type: application/json
+
+{
+  "nombres": "EmpleadoObligatorio",
+  "apellidos": "Test",
+  "fechaNacimiento": "1990-01-01",
+  "tipoDocumento": "C.C.",
+  "numeroDocumento": 2222222222,
+  "correo": "empleadoobligatorio@demo.com"
+}
+
+### 6️⃣ Crear empleado demo
+POST {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}
+Content-Type: application/json
+
+{
+  "nombres": "Empleado",
+  "apellidos": "Demo",
+  "fechaNacimiento": "1990-01-01",
+  "tipoDocumento": "C.C.",
+  "numeroDocumento": 3333333333,
+  "correo": "empleado@demo.com"
+}
+
+### Guardar los IDs del empleado obligatorio
+@idEmpleadoObligatorio = 690df0b01296502cbaa76ac3
+
+### 7️⃣ Actualizar empleado con datos faltantes
+PUT {{base}}/api/v1/empleados/{{idEmpleadoObligatorio}}
+Authorization: Bearer {{tokenSuper}}
+Content-Type: application/json
+
+{
+  
+  "cargo": "Soporte",
+  "correo": "empleadocompleto@demoactualizado.com",
+  "numeroDocumento": 9999999999,
+  "tipoDocumento": "T.I.",
+  "apellidos": "Actualizado",
+  "salario": 1800000,
+  "fechaNacimiento": "1990-01-01",
+  "estado": "Activo",
+  "nombres": "EmpleadoObligatorioActualizado"
+}
+
+### Listar empleado obligatorio actualizado
+GET {{base}}/api/v1/empleados/{{idEmpleadoObligatorio}}
+Authorization: Bearer {{tokenSuper}}
+
+### Guardar el ID del empleado completo
+@idEmpleadoCompleto = 690df09a1296502cbaa76abf
+
+### 8️⃣ Borrar empleado completo
+DELETE {{base}}/api/v1/empleados/{{idEmpleadoCompleto}}
+Authorization: Bearer {{tokenSuper}}
+
+### Guardar el Id del empleado borrado
+@idEmpleadoBorrado = {{idEmpleadoCompleto}}
+
+### Listar empleado borrado (debe fallar)
+GET {{base}}/api/v1/empleados/{{idEmpleadoBorrado}}
+Authorization: Bearer {{tokenSuper}}
+
+### 9️⃣ Listar los empleados restantes (demo y actualizado)
+GET {{base}}/api/v1/empleados
+Authorization: Bearer {{tokenSuper}}

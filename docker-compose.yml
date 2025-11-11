@@ -1,0 +1,37 @@
+version: "3.9"
+
+services:
+  backend:
+    container_name: workflow-backend
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env.docker
+    depends_on:
+      - mongo
+    restart: always
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - workflow-net
+
+  mongo:
+    container_name: workflow-mongo
+    image: mongo:7.0
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - workflow-net
+
+volumes:
+  mongo_data:
+
+networks:
+  workflow-net:
