@@ -1,8 +1,8 @@
 @base = http://localhost:3000
 @correoEmpleado = empleado@demo.com
 @passwordEmpleado = Admin123*
-@idEmpleadoPropio = 690df0c11296502cbaa76ac7
-@idEmpleadoOtro = 690df0b01296502cbaa76ac3
+@idEmpleadoPropio = 69446043abe01a26b44683c3
+@idEmpleadoOtro = 693bfe451c6bb7e0ea774576
 
 ### 1️⃣ Login empleado y guardar token
 POST {{base}}/api/v1/login
@@ -14,7 +14,7 @@ Content-Type: application/json
 }
 
 ### Copiar el token de la respuesta y pegarlo aquí
-@tokenEmpleado = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGJlYTQyOWI5N2I1ZmE4ZDVkZjkzNiIsInJvbCI6ImVtcGxlYWRvIiwibm9tYnJlIjoiRW1wbGVhZG8gRGVtbyIsImNvcnJlbyI6ImVtcGxlYWRvQGRlbW8uY29tIiwiaWF0IjoxNzYyNTIwMjQ1LCJleHAiOjE3NjI1MjM4NDV9.yPN0PiCz5RQcPnFo5XCdo5Q_yNNxuVt0KCAvypLvSic
+@tokenEmpleado = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDQ2MDNhN2Y2MzkwMDlkOTZlYzAxNiIsInJvbCI6ImVtcGxlYWRvIiwibm9tYnJlIjoiRW1wbGVhZG8gRGVtbyIsImNvcnJlbyI6ImVtcGxlYWRvQGRlbW8uY29tIiwiaWF0IjoxNzY2MDk0Mjc3LCJleHAiOjE3NjYwOTc4Nzd9.25Fx9GgPacSyx7QiTc_2WSdjuX53_6_Fy-MAq4CM7kw
 
 ### 2️⃣ Obtener datos del propio usuario (autorizado)
 GET {{base}}/api/v1/empleados/me

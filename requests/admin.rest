@@ -12,7 +12,7 @@ Content-Type: application/json
 }
 
 ### Copiar el token de la respuesta y pegarlo aquí
-@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5MGJlYTQyOWI5N2I1ZmE4ZDVkZjkzNyIsInJvbCI6ImFkbWluIiwibm9tYnJlIjoiQWRtaW4gRGVtbyIsImNvcnJlbyI6ImFkbWluQGRlbW8uY29tIiwiaWF0IjoxNzYyNTE5NjM3LCJleHAiOjE3NjI1MjMyMzd9.57wm8ad4PElsWq_w3407XbCaoTNhzDF9EOKZIU9EowQ
+@tokenAdmin = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5NDQ2MDNhN2Y2MzkwMDlkOTZlYzAxYiIsInJvbCI6ImFkbWluIiwibm9tYnJlIjoiQWRtaW4gRGVtbyIsImNvcnJlbyI6ImFkbWluQGRlbW8uY29tIiwiaWF0IjoxNzY2MDk2NTY2LCJleHAiOjE3NjYxMDAxNjZ9.ws5qHccRIbRgWKI4CJ5wxHKoM0JqUooeGcW7XMmKnGw
 
 ### 2️⃣ Listar todos los empleados (inicial)
 GET {{base}}/api/v1/empleados
@@ -76,7 +76,7 @@ Content-Type: application/json
 }
 
 ### Guardar los IDs del empleado obligatorio
-@idEmpleadoObligatorio = 690df2071296502cbaa76ae3
+@idEmpleadoObligatorio = 69446043abe01a26b44683c3
 
 ### 7️⃣ Actualizar empleado con datos faltantes
 PUT {{base}}/api/v1/empleados/{{idEmpleadoObligatorio}}
@@ -84,16 +84,18 @@ Authorization: Bearer {{tokenAdmin}}
 Content-Type: application/json
 
 {
-  
-  "cargo": "Soporte",
-  "correo": "empleadocompleto@demoactualizado.com",
-  "numeroDocumento": 9999999999,
-  "tipoDocumento": "T.I.",
-  "apellidos": "Actualizado",
-  "salario": 1800000,
-  "fechaNacimiento": "1990-01-01",
+  "nombres": "Melkin Andres",
+  "cargo": "Desarrollo",
+  "correo": "empleado@demo.com",
+  "numeroDocumento": 1053339265,
+  "tipoDocumento": "C.C.",
+  "apellidos": "Villamil Melo",
+  "salario": 3000000,
+  "fechaNacimiento": "1992-03-20",
   "estado": "Activo",
-  "nombres": "EmpleadoObligatorioActualizado"
+  "telefono": "3152027515",
+  "tipoContrato": "Indefinido",
+  "area": "Software"
 }
 
 ### Listar empleado obligatorio actualizado
