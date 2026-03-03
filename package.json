@@ -21,6 +21,7 @@
     "seed:admin": "node seeds/seedAdminJWT.js",
     "seed:empleadojwt": "node seeds/seedEmpleadoJWT.js",
     "seed:jwt": "node seeds/seedJWT.js",
+    "seed:BDEmployees": "node seeds/seedAdminJWTCreateEmployees.js",
     "seed:superadmin-empleado": "node seeds/seedSuperadminEmpleadoJWT.js",
     "seed:admin-empleado": "node seeds/seedAdminEmpleadoJWT.js",
     "seed:all": "npm run seed:mongo && npm run seed:jwt"
